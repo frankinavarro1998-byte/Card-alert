@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#111827" />
+  <title>Card Stock Alert</title>
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>Card Stock Alert</h1>
+      <p>Target · Walmart · Topps · Other</p>
+    </div>
+    <button id="notifyBtn" class="secondary">Enable alerts</button>
+  </header>
+
+  <main>
+    <section class="card hero">
+      <div>
+        <span class="eyebrow">WATCHLIST</span>
+        <h2>Catch card drops faster.</h2>
+        <p>Add the exact product page you want watched. The app checks it and alerts your phone when availability changes.</p>
+      </div>
+      <button id="checkAllBtn">Check all now</button>
+    </section>
+
+    <section class="card">
+      <h3>Add product</h3>
+      <form id="addForm" class="grid-form">
+        <label>Product name<input id="name" required placeholder="2026 Topps Chrome Hobby Box" /></label>
+        <label>Retailer
+          <select id="retailer" required>
+            <option value="target">Target</option>
+            <option value="walmart">Walmart</option>
+            <option value="topps">Topps</option>
+            <option value="other">Other</option>
+          </select>
+        </label>
+        <label class="wide">Product URL<input id="url" type="url" required placeholder="https://..." /></label>
+        <label>Max price (optional)<input id="maxPrice" type="number" min="0.01" step="0.01" placeholder="149.99" /></label>
+        <label>Check interval
+          <select id="interval">
+            <option value="60">1 minute</option>
+            <option value="90" selected>90 seconds</option>
+            <option value="180">3 minutes</option>
+            <option value="300">5 minutes</option>
+          </select>
+        </label>
+        <button type="submit" class="wide">Add to watchlist</button>
+      </form>
+      <p id="formMsg" class="message"></p>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <h3>Your watchlist</h3>
+        <span id="watchCount" class="pill">0 items</span>
+      </div>
+      <div id="watchlist" class="stack"></div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <h3>Recent changes</h3>
+      </div>
+      <div id="events" class="stack"></div>
+    </section>
+  </main>
+
+  <template id="itemTpl">
+    <article class="card item">
+      <div class="item-top">
+        <div>
+          <div class="retailer"></div>
+          <h4 class="item-name"></h4>
+        </div>
+        <span class="status"></span>
+      </div>
+      <div class="meta"></div>
+      <div class="actions">
+        <button class="check secondary">Check now</button>
+        <a class="open secondary" target="_blank" rel="noopener">Open product</a>
+        <button class="toggle secondary"></button>
+        <button class="delete danger">Delete</button>
+      </div>
+    </article>
+  </template>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
